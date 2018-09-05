@@ -18,13 +18,9 @@ def raw_dataset_iter(filename, task_name, keep_number, lowercase):
                     yield words, tags
                     words, tags = [], []
             else:
-                word, pos, chunk, ner = line.split(" ")
-                if task_name == "ner":
-                    tag = ner
-                elif task_name == "chunk":
-                    tag = chunk
-                else:
-                    tag = pos
+                word, ner = line.split(" ")
+                tag = ner
+                
                 word = word_convert(word, keep_number=keep_number, lowercase=lowercase)
                 words.append(word)
                 tags.append(tag)
